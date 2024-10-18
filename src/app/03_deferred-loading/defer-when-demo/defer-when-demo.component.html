@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">Angular Deferred Loading</mat-toolbar>
+
+<!-- <mat-tab-group (selectedIndexChange)="selectedIndex.set($event)">
+    <mat-tab label="Tab1">
+        @if (selectedIndex() === 0) {
+            <app-ve-none-demo />
+        }
+    </mat-tab>
+    <mat-tab label="Tab2"> 
+        @if(selectedIndex() === 1) {
+            <app-ve-emulated-demo />
+        }
+    </mat-tab>
+    <mat-tab label="Tab3"> 
+        @if(selectedIndex() === 2) {
+            <app-ve-shadowdom-demo />
+        }
+    </mat-tab>
+</mat-tab-group> -->
+
+
+<mat-tab-group (selectedIndexChange)="selectedIndex.set($event)">
+    <mat-tab label="Tab1">
+        @defer (when  selectedIndex() === 0) {
+            <app-ve-none-demo />
+        }
+    </mat-tab>
+    <mat-tab label="Tab2"> 
+        @defer (when selectedIndex() === 1) {
+            <app-ve-emulated-demo />
+        }
+    </mat-tab>
+    <mat-tab label="Tab3"> 
+        @defer (when selectedIndex() === 2) {
+            <app-ve-shadowdom-demo />
+        }
+    </mat-tab>
+</mat-tab-group>
