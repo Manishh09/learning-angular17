@@ -1,0 +1,35 @@
+<div class="new-cf-container">
+
+    <h3>New Control Flow</h3>
+
+    <div class="search">
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input type="search" class="search-in" matInput (change)="onChange($event)">
+        </mat-form-field>
+        
+    </div>
+
+
+    <div class="child-contianer">      
+        @if((data$  | async ); as item) {
+
+            @switch (type) {
+
+                @case ('posts') {
+                    <app-posts    />
+                }
+                @case ('users') {
+                    <app-user-list  [users]="item.users"  />
+                }
+                @default {
+                    <div class="unknown"> Unknown data</div>
+                }
+            }
+        }
+        @else {
+            <p>No data...</p>
+        }
+    </div>
+
+</div>

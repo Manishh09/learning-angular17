@@ -1,0 +1,44 @@
+/* login.component.scss */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   // justify-content: center;
+    height: 60vh;
+}
+.login-form-header {
+
+text-align: left;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+}
+
+.login-form .mat-mdc-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-form input {
+     
+    border: none !important;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}

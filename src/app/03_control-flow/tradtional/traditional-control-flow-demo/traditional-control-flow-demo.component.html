@@ -1,0 +1,30 @@
+<div class="traditional-cf-container">
+
+    <h3>Traditional Control Flow</h3>
+
+    <div class="search">
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input type="search" class="search-in" matInput (change)="onChange($event)">
+        </mat-form-field>
+        
+    </div>
+    
+    <div class="child-container" >
+        <ng-container *ngIf="(data$  | async ) as item; else noData">
+            
+            <ng-container [ngSwitch]="type">
+            <app-posts-traditional-cf *ngSwitchCase="'posts'"   />
+            <app-user-list-traditional-cf *ngSwitchCase="'users'"   [users]="item.users"  />
+            <div *ngSwitchDefault class="unknown">Unknown Data</div>
+            </ng-container>
+        </ng-container>
+        <ng-template #noData>
+            <p>No data...</p>
+        </ng-template>
+    </div>
+
+
+   
+
+</div>
