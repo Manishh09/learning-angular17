@@ -12,7 +12,7 @@ import { DirectiveCompositionDemoComponent } from './06_composition-apis/directi
 export const routes: Routes = [
     {
         path: '',
-        component: DirectiveCompositionDemoComponent
+        component: NewControlFlowDemoComponent
     },
     {
         path: 'selectors-demo',
