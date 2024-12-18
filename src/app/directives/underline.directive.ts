@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appUnderline]',
@@ -6,16 +6,19 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class UnderlineDirective {
 
-  constructor(private hostElement: ElementRef<HTMLElement>) {}
+  constructor(private hostElement: ElementRef<HTMLElement>, private renderer: Renderer2) {}
 
   @HostListener('mouseenter')
   onMouseEnter() {
-    this.hostElement.nativeElement.style.textDecoration = 'underline dotted';
+    this.renderer.setStyle(this.hostElement.nativeElement, 'textDecoration', 'underline dotted')
+    // this.hostElement.nativeElement.style.textDecoration = 'underline dotted';
   }
 
   @HostListener('mouseleave')
   onMouseLeave() {
-    this.hostElement.nativeElement.style.textDecoration = 'none';
-    this.hostElement.nativeElement.style.textDecorationColor = 'none';
+    this.renderer.setStyle(this.hostElement.nativeElement, 'textDecoration', 'none')
+
+    // this.hostElement.nativeElement.style.textDecoration = 'none';
+    // this.hostElement.nativeElement.style.textDecorationColor = 'none';
   }
 }
