@@ -7,7 +7,7 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<style>
+  <style>
     :host {
       --bright-blue: oklch(51.01% 0.274 263.83);
       --electric-violet: oklch(53.18% 0.28 296.97);
@@ -175,9 +175,22 @@
         margin-block: 1.5rem;
       }
     }
+    .theme {
+      position: absolute;
+      top: 0;
+      right: 5px;
+    }
   </style>
   
   <main class="main">
+    <div class="theme">
+      <button mat-icon-button type="button" (click)="toggleTheme()" [matTooltip]="mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'">
+        <mat-icon>
+        {{mode === 'light' ?  'dark_mode' : 'light_mode'}} 
+        </mat-icon>
+      </button>
+
+    </div>
     <div class="content">
       <div class="left-side">
         <svg

@@ -22,3 +22,17 @@ body {
     background-color: green;
 }
 
+:root {
+  color-scheme: light dark;
+  --bg-color: light-dark(#ffffff, blue);
+  --text-color: light-dark(#000000, #fefffd);
+}
+
+[data-dark-mode] {
+  color-scheme: dark;
+}
+
+button {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
