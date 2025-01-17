@@ -1,7 +1,7 @@
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,31 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   get<T>(url?: string): Observable<T> {
-    return this.http.get<T>(`${this.#apiURL}/${url}`);
+    return this.http.get<T>(`${this.#apiURL}/${url}`).pipe(catchError(this.handleError));
   }
 
   post<T>(data: any): Observable<T> {
-    return this.http.post<T>(this.#apiURL, data);
+    return this.http.post<T>(this.#apiURL, data).pipe(catchError(this.handleError));
   }
 
   put<T>(data: any): Observable<T> {
-    return this.http.put<T>(this.#apiURL, data);
+    return this.http.put<T>(this.#apiURL, data).pipe(catchError(this.handleError));
   }
 
   delete<T>(): Observable<T> {
-    return this.http.delete<T>(this.#apiURL);
+    return this.http.delete<T>(this.#apiURL).pipe(catchError(this.handleError));
+  }
+
+  /**
+   * Handles HTTP errors by creating an error message and returning an observable that throws the error.
+   *
+   * @param {HttpErrorResponse} err - The HTTP error response object.
+   * @returns {Observable<never>} An observable that throws an error with the error message.
+   * Observable<never> - its an observable that emits no items to the Observer and never completes
+   */
+  handleError(err: HttpErrorResponse): Observable<never> {
+    const errorMessage = `An error occurred: ${err.message}`;
+    return throwError( () => errorMessage);
   }
 }
 export type Root = User[]
