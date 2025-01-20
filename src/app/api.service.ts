@@ -1,6 +1,6 @@
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
@@ -9,22 +9,22 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class ApiService {
   #apiURL = 'https://jsonplaceholder.typicode.com';
 
-  constructor(private http: HttpClient) { }
+  private readonly http = inject(HttpClient);
 
   get<T>(url?: string): Observable<T> {
-    return this.http.get<T>(`${this.#apiURL}/${url}`).pipe(catchError(this.handleError));
+    return this.http.get<T>(`${this.#apiURL}/${url}`)
   }
 
   post<T>(data: any): Observable<T> {
-    return this.http.post<T>(this.#apiURL, data).pipe(catchError(this.handleError));
+    return this.http.post<T>(this.#apiURL, data)
   }
 
   put<T>(data: any): Observable<T> {
-    return this.http.put<T>(this.#apiURL, data).pipe(catchError(this.handleError));
+    return this.http.put<T>(this.#apiURL, data)
   }
 
   delete<T>(): Observable<T> {
-    return this.http.delete<T>(this.#apiURL).pipe(catchError(this.handleError));
+    return this.http.delete<T>(this.#apiURL)
   }
 
   /**
@@ -36,7 +36,7 @@ export class ApiService {
    */
   handleError(err: HttpErrorResponse): Observable<never> {
     const errorMessage = `An error occurred: ${err.message}`;
-    return throwError( () => errorMessage);
+    return throwError(() => errorMessage);
   }
 }
 export type Root = User[]
