@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PostsTraditionalCfComponent } from './posts-traditional-cf.component';
 
-import { PostsTraditonalCfComponent } from './posts-traditonal-cf.component';
-
+ 
 describe('PostsTraditonalCfComponent', () => {
-  let component: PostsTraditonalCfComponent;
-  let fixture: ComponentFixture<PostsTraditonalCfComponent>;
+  let component: PostsTraditionalCfComponent;
+  let fixture: ComponentFixture<PostsTraditionalCfComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PostsTraditonalCfComponent]
+      imports: [PostsTraditionalCfComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PostsTraditonalCfComponent);
+    fixture = TestBed.createComponent(PostsTraditionalCfComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

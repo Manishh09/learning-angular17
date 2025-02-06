@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NewControlFlowDemoComponent } from './new-control-flow-demo.component';
 
-import { ControlFlowDemoComponent } from './control-flow-demo.component';
-
+ 
 describe('ControlFlowDemoComponent', () => {
-  let component: ControlFlowDemoComponent;
-  let fixture: ComponentFixture<ControlFlowDemoComponent>;
+  let component: NewControlFlowDemoComponent;
+  let fixture: ComponentFixture<NewControlFlowDemoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ControlFlowDemoComponent]
+      imports: [NewControlFlowDemoComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ControlFlowDemoComponent);
+    fixture = TestBed.createComponent(NewControlFlowDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

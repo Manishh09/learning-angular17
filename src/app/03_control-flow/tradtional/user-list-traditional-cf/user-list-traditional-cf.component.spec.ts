@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserListTraditionalCfComponent } from './user-list-traditional-cf.component';
 
-import { UserListTraditonalCfComponent } from './user-list-traditonal-cf.component';
-
+ 
 describe('UserListTraditonalCfComponent', () => {
-  let component: UserListTraditonalCfComponent;
-  let fixture: ComponentFixture<UserListTraditonalCfComponent>;
+  let component: UserListTraditionalCfComponent;
+  let fixture: ComponentFixture<UserListTraditionalCfComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserListTraditonalCfComponent]
+      imports: [UserListTraditionalCfComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserListTraditonalCfComponent);
+    fixture = TestBed.createComponent(UserListTraditionalCfComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

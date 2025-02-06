@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { NewControlFlowDemoComponent } from './03_control-flow/new/new-control-flow-demo/new-control-flow-demo.component';
 import { TraditionalControlFlowDemoComponent } from './03_control-flow/tradtional/traditional-control-flow-demo/traditional-control-flow-demo.component';
 import { DirectiveCompositionDemoComponent } from './06_composition-apis/directive-composition-demo/directive-composition-demo.component';
+import { CanDeactivateGuard } from './05_routing/guards/traditional/can-deactivate/can-deactivate.guard';
 
 export const routes: Routes = [
     {
@@ -35,8 +36,10 @@ export const routes: Routes = [
         component: TraditionalControlFlowDemoComponent
     },
     {
-        path: 'new-control-flow',
-        component: NewControlFlowDemoComponent
+        path: 'new-control-flow/:id',
+        
+        component: NewControlFlowDemoComponent,
+        canDeactivate: [CanDeactivateGuard],
     },
     {
         path: 'defer-block',
