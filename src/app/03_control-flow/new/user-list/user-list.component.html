@@ -1,9 +1,9 @@
  
 
 <div class="new-cf">
-    @if (users.length) {
+    @if (users().length) {
         <ul class="list-users">
-            @for (item of users; track item.id) {
+            @for (item of users(); track item.id) {
                 <li>{{item.name}}</li>
             }
         </ul>

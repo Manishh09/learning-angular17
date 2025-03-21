@@ -7,33 +7,39 @@
             <mat-label>Search</mat-label>
             <input type="search" class="search-in" matInput (change)="onChange($event)">
         </mat-form-field>
-        
+
     </div>
 
 
-    <div class="child-contianer">      
-        @if((data$  | async ); as item) {
+    <div class="child-contianer">
+        @if((data$ | async ); as item) {
 
-            @switch (type) {
+        @switch (type) {
+        @case ('posts') {
 
-                @case ('posts') {
-                    <app-posts    />
-                }
-                @case ('users') {
-                    <app-user-list  [users]="item.users"  />
-                }
-                @default {
-                    <div class="unknown"> Unknown data</div>
-                }
-            }
+        @defer () {
+
+            <app-posts />
+        }
+
+        }
+        @case ('users') {
+
+        <app-user-list [users]="item.users" />
+
+        }
+        @default {
+        <div class="unknown"> Unknown data</div>
+        }
+        }
         }
         @else {
-            <p>No data...</p>
+        <p>No data...</p>
         }
     </div>
 
     <div class="navigate">
-        <button  mat-button type="submit" (click)="goToTraditionalCflowComp()">Go To Traditional</button>
+        <button mat-button type="submit" (click)="goToTraditionalCflowComp()">Go To Traditional</button>
     </div>
 
 </div>

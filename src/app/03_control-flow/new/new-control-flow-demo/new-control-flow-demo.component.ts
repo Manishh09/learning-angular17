@@ -7,33 +7,39 @@ import { NgModel } from '@angular/forms';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { DataService } from '../../data.service';
- import { NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
+import { PostsTraditionalCfComponent } from "../../tradtional/posts-traditional-cf/posts-traditional-cf.component";
+import { UserListTraditionalCfComponent } from "../../tradtional/user-list-traditional-cf/user-list-traditional-cf.component";
 
 @Component({
   selector: 'app-control-flow-demo',
   standalone: true,
-  imports: [UserListComponent, PostsComponent, AsyncPipe, MatFormFieldModule, MatInputModule],
+  imports: [UserListComponent, PostsComponent, AsyncPipe, MatFormFieldModule, MatInputModule, PostsTraditionalCfComponent, UserListTraditionalCfComponent, NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf],
   templateUrl: './new-control-flow-demo.component.html',
   styleUrl: './new-control-flow-demo.component.scss'
 })
-export class NewControlFlowDemoComponent implements OnInit { 
- 
+export class NewControlFlowDemoComponent implements OnInit {
+
   id = input.required<string>()
-   
-  router = inject(Router)
+
   unSavedChanges = false;
   type = 'posts | users'
+  #ds = inject(DataService);
+  #router = inject(Router)
+
 
   ngOnInit(): void {
-      console.log(this.id())
+    console.log(this.id())
   }
-  
+
   onChange($event: any) {
     this.type = $event.target.value
 
     this.unSavedChanges = true;
 
   }
+
+  data$ = forkJoin({ type: of(['posts', 'users']), users: this.#ds.getUserGen(), posts: this.#ds.getPosts() })
 
   /**
    * Determines whether the user can navigate away from the current page.
@@ -42,16 +48,16 @@ export class NewControlFlowDemoComponent implements OnInit {
    * 
    * @returns {boolean} - Returns `true` if the user confirms navigation despite unsaved changes, otherwise `false`.
    */
-  canNavigateAway() : boolean {
+  canNavigateAway(): boolean {
 
-    if(this.unSavedChanges){
+    if (this.unSavedChanges) {
       return confirm("Unsaved Changes !!");
-    }   
+    }
 
     return false;
   }
 
- 
+
 
   /**
    * Handles the unload event and prompts the user with a confirmation message
@@ -61,16 +67,14 @@ export class NewControlFlowDemoComponent implements OnInit {
    */
   @HostListener('window:beforeunload', ['$event'])
   show($event: any): void {
-    if(this.unSavedChanges)
+    if (this.unSavedChanges)
       $event.returnValue = 'Are you sure you want to leave this page?';
   }
 
   goToTraditionalCflowComp() {
-    this.router.navigate(['traditional-control-flow'])
+    this.#router.navigate(['traditional-control-flow'])
   }
 
 
-  #ds = inject(DataService);
 
-  data$ = forkJoin({ type: of(['posts', 'users']), users: this.#ds.getUserGen(), posts: this.#ds.getPosts() })
 }
